@@ -19,6 +19,7 @@ class WeatherActivity : AppCompatActivity(), ResponceSupport {
 
     lateinit var presenter : ResponcePreenter
     lateinit var loading : Loader
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather)
@@ -27,7 +28,7 @@ class WeatherActivity : AppCompatActivity(), ResponceSupport {
 
     override fun onResume() {
         super.onResume()
-        presenter = ResponcePreenter(this,WebClient().getApi.getWeather(AppKey.key))
+        presenter = ResponcePreenter(this,WebClient())
         presenter.callWeatherAPI()
 
     }
