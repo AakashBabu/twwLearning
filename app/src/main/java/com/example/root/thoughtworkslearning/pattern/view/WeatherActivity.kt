@@ -1,7 +1,10 @@
 package com.example.root.thoughtworkslearning.pattern.view
 
+import android.content.Context
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.example.root.thoughtworkslearning.Loader
 import com.example.root.thoughtworkslearning.R
 import com.example.root.thoughtworkslearning.api.WebClient
@@ -19,17 +22,26 @@ class WeatherActivity : AppCompatActivity(), ResponceSupport {
 
     lateinit var presenter : ResponcePreenter
     lateinit var loading : Loader
+    lateinit var context : Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather)
         loading = Loader(this);
+        context = this
     }
 
     override fun onResume() {
         super.onResume()
         presenter = ResponcePreenter(this,WebClient())
         presenter.callWeatherAPI()
+
+        tabButton.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(p0: View?) {
+                startActivity(DetailActivity.intance(context))
+            }
+
+        })
 
     }
 
@@ -65,4 +77,5 @@ class WeatherActivity : AppCompatActivity(), ResponceSupport {
     override fun hideLoader() {
         loading.hide()
     }
+
 }
