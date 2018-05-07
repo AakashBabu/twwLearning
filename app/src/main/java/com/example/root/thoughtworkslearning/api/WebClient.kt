@@ -1,7 +1,7 @@
 package com.example.root.thoughtworkslearning.api
 
 import com.example.root.thoughtworkslearning.pattern.model.BaseModel
-import com.example.root.thoughtworkslearning.singleton.AppKey
+import com.example.root.thoughtworkslearning.temp.AppKey
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,7 +32,7 @@ class WebClient {
 
 
     fun getWeather(callback: MyCallback){
-        getApi.getWeather(AppKey.key).enqueue((object: retrofit2.Callback<BaseModel> {
+        getApi.getWeather(AppKey.city,AppKey.key).enqueue((object: Callback<BaseModel> {
             override fun onFailure(call: Call<BaseModel>?, t: Throwable?) {
                 callback.onError()
             }
@@ -48,7 +48,7 @@ class WebClient {
 
     interface WebServiceAPI{
 
-        @GET("weather?q=Bangalore")
-        fun getWeather(@Query("appid") id: String): Call<BaseModel>
+        @GET("weather")
+        fun getWeather(@Query("q") dist:String, @Query("appid") id: String): Call<BaseModel>
     }
 }

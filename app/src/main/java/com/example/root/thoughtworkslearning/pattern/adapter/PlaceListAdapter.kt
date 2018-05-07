@@ -1,5 +1,6 @@
 package com.example.root.thoughtworkslearning.pattern.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -7,16 +8,19 @@ import android.view.ViewGroup
 import android.widget.*
 import com.example.root.thoughtworkslearning.R
 import com.example.root.thoughtworkslearning.TempValue
+import com.example.root.thoughtworkslearning.pattern.view.DetailActivity
+import com.example.root.thoughtworkslearning.temp.AppKey
 
-class PlaceListAdapter(var context: Context, var array: Array<String>): BaseAdapter() {
+class PlaceListAdapter(var context: Activity, var array: Array<String>): BaseAdapter() {
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
         val view = LayoutInflater.from(context).inflate(R.layout.row_basic,null)
-        (view.findViewById(R.id.title) as TextView).setText(array[p0])
+        var title = view.findViewById(R.id.title) as TextView
+        title.text = (array[p0])
         var check = view.findViewById(R.id.checkbox) as CheckBox
         check.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener{
             override fun onCheckedChanged(p0: CompoundButton?, p1: Boolean) {
-
-
+                AppKey.city = title.text.toString()
+                context.finish()
             }
 
         })

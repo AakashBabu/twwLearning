@@ -1,9 +1,8 @@
 package com.example.root.thoughtworkslearning.pattern.view
 
 import android.content.Context
-import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.example.root.thoughtworkslearning.Loader
 import com.example.root.thoughtworkslearning.R
@@ -11,11 +10,7 @@ import com.example.root.thoughtworkslearning.api.WebClient
 import com.example.root.thoughtworkslearning.pattern.model.BaseModel
 import com.example.root.thoughtworkslearning.pattern.presenter.ResponcePreenter
 import com.example.root.thoughtworkslearning.pattern.presenter.ResponceSupport
-import com.example.root.thoughtworkslearning.singleton.AppKey
 import kotlinx.android.synthetic.main.activity_weather.*
-import okhttp3.Call
-import okhttp3.Callback
-import retrofit2.Response
 
 
 class WeatherActivity : AppCompatActivity(), ResponceSupport {
